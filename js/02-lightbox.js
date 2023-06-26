@@ -22,14 +22,12 @@ galleryList.innerHTML = createGalleryMarkup(galleryItems);
 
 const gallery = new SimpleLightbox('.gallery a');
 
-gallery.on('show.simplelightbox', function () {
-    setTimeout(() => {
-        const currentImage = this.currentImage;
-        const description = currentImage.querySelector('img').getAttribute('alt');
-        setTimeout(() => {
-            currentImage.$slide.append(`<div class="sl-description">${description}</div>`);
-        }, 250);
-    });
+gallery.on('shown.simplelightbox', function () {
+  setTimeout(() => {
+    const currentImage = this.currentImage;
+    const description = currentImage.querySelector('img').getAttribute('alt');
+    currentImage.$slide.append(`<div class="sl-description">${description}</div>`);
+  }, 250);
 });
 
 // console.log(galleryItems);
