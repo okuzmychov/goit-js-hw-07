@@ -1,6 +1,6 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 
-const galleryList = document.querySelector('.gallery');
+const galleryList = document.querySelector(".gallery");
 
 const createGalleryMarkup = (items) => {
   return items
@@ -15,19 +15,12 @@ const createGalleryMarkup = (items) => {
         </li>
       `;
     })
-    .join('');
+    .join("");
 };
 
 galleryList.innerHTML = createGalleryMarkup(galleryItems);
 
-const gallery = new SimpleLightbox('.gallery a');
-
-gallery.on('shown.simplelightbox', function () {
-  setTimeout(() => {
-    const currentImage = this.currentImage;
-    const description = currentImage.querySelector('img').getAttribute('alt');
-    currentImage.$slide.append(`<div class="sl-description">${description}</div>`);
-  }, 250);
+const gallery = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
 });
-
-// console.log(galleryItems);
